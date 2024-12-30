@@ -13,35 +13,32 @@ class CartPage {
         await this.driver.findElement(By.className('shopping_cart_link')).click();
     }
 
+    async addItemToCart() {
+        const addToCartButton = await this.driver.findElement(By.css('.add-to-cart-button'));
+        await addToCartButton.click();
+    }
+    
+
     async getCartItemsCount() {
         try {
             const items = await this.driver.findElements(this.cartItems);
             return items.length;
         } catch (err) {
-            return 0; // Tidak ada item di keranjang
+            console.log('Error getting cart items:', err);
+            return 0; // No items in the cart
         }
+    }
+
+    async proceedToCheckout() {
+        const itemsCount = await this.getCartItemsCount();
+        await this.driver.findElement(this.checkoutButton).click();
     }
 
     async clickCheckout() {
         await this.driver.findElement(this.checkoutButton).click();
     }
 
-    async clickContinueShopping() {
-        await this.driver.findElement(this.continueShoppingButton).click();
-    }
-
-    async addItemToCart(itemIndex = 0) {
-        try {
-            const buttons = await this.driver.findElements(this.addToCartButtons);
-            if (buttons[itemIndex]) {
-                await buttons[itemIndex].click();
-            } else {
-                throw new Error('Item index out of range');
-            }
-        } catch (err) {
-            console.error('Failed to add item to cart:', err);
-        }
-    }
+    
 }
 
 module.exports = CartPage;

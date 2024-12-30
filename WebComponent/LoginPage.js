@@ -1,4 +1,4 @@
-const {By} = require ('selenium-webdriver');
+const {By, Browser} = require ('selenium-webdriver');
 const { get } = require('selenium-webdriver/http');
 
 class LoginPage{
@@ -10,8 +10,8 @@ class LoginPage{
         this.errorMessage = By.css('.error-message-container');
     }
 
-    async navigate(){
-        await this.driver.get("https://www.saucedemo.com/");
+    async navigate(browser){
+        await this.driver.get(browser);
     }
 
     async login(username, password){

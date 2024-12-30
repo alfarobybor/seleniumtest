@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha 'test/**/*.js'"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "chromedriver": "^131.0.4",
+    "dotenv": "^16.4.7",
     "selenium-webdriver": "^4.27.0"
   }
 }

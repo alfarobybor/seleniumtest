@@ -12,17 +12,15 @@ class DashboardPage {
     }
 
     async addItemToCart(itemIndex = 0) {
-        try {
-            const buttons = await this.driver.findElements(this.addToCartButtons);
-            if (buttons[itemIndex]) {
-                await buttons[itemIndex].click();
-            } else {
-                throw new Error('Item index out of range');
-            }
-        } catch (err) {
-            console.error('Failed to add item to cart:', err);
+        const buttons = await this.driver.findElements(this.addToCartButtons);
+        if (buttons[itemIndex]) {
+            console.log('Clicking on Add to Cart button');
+            await buttons[itemIndex].click();
+        } else {
+            throw new Error('Item index out of range');
         }
     }
+    
 }
 
 module.exports = DashboardPage;
